@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Window
+    Title="Trans From"
     x:Class="TransFrom.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TransFrom"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 顶部导航栏 主要用来放置返回控件和标题等 -->
+        <Grid Grid.Row="0" Background="{ThemeResource AppBarBackgroundThemeBrush}" Height="48" />
+        <!-- 主体内容导航栏 -->
+        <NavigationView Grid.Row="1"
+                        PaneDisplayMode="Left"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False"
+                        Background="{ThemeResource AppBarBackgroundThemeBrush}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Trim" Content="转换" Tag="TransformPage" />
+                <NavigationViewItem Icon="Accept" Content="压缩" Tag="CompressPage" />
+                <NavigationViewItem Icon="Refresh" Content="裁剪" Tag="CropPage" />
+                <NavigationViewItem Icon="Download" Content="合并" Tag="MergePage" />
+            </NavigationView.MenuItems>
+
+            <!--这个导览页面用于展示数据内容，左侧选择操作 -->
+            <NavigationView.Content>
+                <TabView Grid.Row="1"
+                         Name="FileTabView"
+                         Loaded="TabView_Loaded"
+                         AddTabButtonClick="TabView_OnAddTabButtonClick"
+                         TabCloseRequested="TabView_OnTabCloseRequested">
+                </TabView>
+            </NavigationView.Content>
+        </NavigationView>
+    </Grid>
+
 </Window>

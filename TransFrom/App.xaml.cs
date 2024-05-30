@@ -1,50 +1,33 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Text;
+using Microsoft.UI.Xaml;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace TransFrom;
 
-namespace TransFrom
+// 想要学习更多有关 WinUI 、WinUI 项目结构和我们的项目模板，参见：http://aka.ms/winui-project-info
+
+/// <summary>
+/// 提供应用程序特定的行为以补充默认的 Application 类。
+/// </summary>
+public partial class App
 {
     /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
+    /// 初始化单例应用程序对象。这是执行的第一行已编写代码，逻辑等同于 main() 或 WinMain()。
     /// </summary>
-    public partial class App : Application
+    public App()
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
-        public App()
-        {
-            this.InitializeComponent();
-        }
+        InitializeComponent();
+        // 注册编码以便将来解析不同编码的文件
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+    }
 
-        /// <summary>
-        /// Invoked when the application is launched.
-        /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
-        {
-            m_window = new MainWindow();
-            m_window.Activate();
-        }
-
-        private Window m_window;
+    /// <summary>
+    /// 在应用程序由最终用户正常启动时调用。
+    /// </summary>
+    /// <param name="args">有关启动请求和过程的详细信息。</param>
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        var mainWindow = new MainWindow();
+        mainWindow.Activate();
+        mainWindow.ExtendsContentIntoTitleBar = true;
     }
 }

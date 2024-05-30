@@ -13,24 +13,45 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace TransFrom;
 
-namespace TransFrom
+/// <summary>
+/// 可以自身使用或者在 Frame 内导航的空白页。
+/// </summary>
+public sealed partial class MainWindow
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+    // 添加欢迎界面
+    private void TabView_Loaded(object sender, RoutedEventArgs e)
+    {
+        var tab = new TabViewItem
         {
-            myButton.Content = "Clicked";
-        }
+            IconSource = new FontIconSource { Glyph = "\uE706" },
+            Header = "欢迎界面",
+            Content = new WelcomePage()
+        };
+        FileTabView.TabItems.Add(tab);
+    }
+
+    // 添加新建文档按钮
+    private void TabView_OnAddTabButtonClick(TabView sender, object args)
+    {
+        var tab = new TabViewItem
+        {
+            IconSource = new FontIconSource { Glyph = "\uE8B6" },
+            Header = "新建文档",
+            Content = new TextBlock { Text = "新建文档" }
+        };
+        FileTabView.TabItems.Add(tab);
+    }
+
+    // 添加关闭按钮
+    private void TabView_OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    {
+        FileTabView.TabItems.Remove(args.Tab);
     }
 }
