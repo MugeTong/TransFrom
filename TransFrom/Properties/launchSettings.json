@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TransFrom (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TransFrom (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
