@@ -7,6 +7,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fileViewer="using:TransFrom.FileViewer"
+    xmlns:commonControls="using:TransFrom.CommonControls"
     mc:Ignorable="d">
 
 
@@ -16,29 +18,33 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- 顶部导航栏 主要用来放置返回控件和标题等 -->
-        <Grid Grid.Row="0" Background="{ThemeResource AppBarBackgroundThemeBrush}" Height="48" />
+        <commonControls:AppTitleBar Grid.Row="0" />
+
         <!-- 主体内容导航栏 -->
         <NavigationView Grid.Row="1"
                         PaneDisplayMode="Left"
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False"
-                        Background="{ThemeResource AppBarBackgroundThemeBrush}">
+                        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Trim" Content="转换" Tag="TransformPage" />
+                <NavigationViewItem Icon="Trim" Content="转换" Tag="TransformPage">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
+                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
                 <NavigationViewItem Icon="Accept" Content="压缩" Tag="CompressPage" />
                 <NavigationViewItem Icon="Refresh" Content="裁剪" Tag="CropPage" />
                 <NavigationViewItem Icon="Download" Content="合并" Tag="MergePage" />
             </NavigationView.MenuItems>
 
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" />
+            </NavigationView.AutoSuggestBox>
+
             <!--这个导览页面用于展示数据内容，左侧选择操作 -->
             <NavigationView.Content>
-                <TabView Grid.Row="1"
-                         Name="FileTabView"
-                         Loaded="TabView_Loaded"
-                         AddTabButtonClick="TabView_OnAddTabButtonClick"
-                         TabCloseRequested="TabView_OnTabCloseRequested">
-                </TabView>
+                <fileViewer:FileTabView />
             </NavigationView.Content>
         </NavigationView>
     </Grid>

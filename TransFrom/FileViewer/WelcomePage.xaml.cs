@@ -1,4 +1,4 @@
-﻿namespace TransFrom;
+﻿namespace TransFrom.FileViewer;
 
 public sealed partial class WelcomePage
 {
