@@ -8,34 +8,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:fileViewer="using:TransFrom.FileViewer"
-    xmlns:commonControls="using:TransFrom.CommonControls"
     mc:Ignorable="d">
 
-
     <Grid>
+        <Grid.Resources>
+            <x:Double x:Key="AppTitleBarThemeHeight">48</x:Double>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <commonControls:AppTitleBar Grid.Row="0" />
+
+        <Border Height="48" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
 
         <!-- 主体内容导航栏 -->
-        <NavigationView Grid.Row="1"
+        <NavigationView Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         PaneDisplayMode="Left"
-                        IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False"
                         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <!-- 自定义标题栏 TitleBar 同时覆盖导航栏的资源 -->
+            <NavigationView.Resources>
+                <!-- This top margin is the height of the custom titleBar -->
+                <Thickness x:Key="NavigationViewContentMargin">0,42,0,0</Thickness>
+                <Thickness x:Key="NavigationViewMinimalContentMargin">0,42,0,0</Thickness>
+                <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
+                <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+            </NavigationView.Resources>
+
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Trim" Content="转换" Tag="TransformPage">
+                <NavigationViewItem x:Name="TransformNavigationViewItem" Content="转换" Tag="TransformPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7FD;" />
+                    </NavigationViewItem.Icon>
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
                         <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-                <NavigationViewItem Icon="Accept" Content="压缩" Tag="CompressPage" />
-                <NavigationViewItem Icon="Refresh" Content="裁剪" Tag="CropPage" />
-                <NavigationViewItem Icon="Download" Content="合并" Tag="MergePage" />
+
+                <NavigationViewItem Content="压缩" Tag="CompressPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE81E;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Crop" Content="裁剪" Tag="CropPage">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
+                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                <NavigationViewItem Content="合并" Tag="MergePage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEA3C;" RenderTransformOrigin=".5 .5">
+                            <FontIcon.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </FontIcon.RenderTransform>
+                        </FontIcon>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.AutoSuggestBox>
