@@ -9,12 +9,16 @@
     mc:Ignorable="d">
 
 
-    <TabView x:Name="FileViewWindow"
-             Padding="0, -2, 0, 0"
-             VerticalAlignment="Stretch"
-             HorizontalAlignment="Stretch"
-             Loaded="TabView_Loaded"
-             AddTabButtonClick="TabView_OnAddTabButtonClick"
-             TabCloseRequested="TabView_OnTabCloseRequested">
-    </TabView>
+    <Grid>
+        <TabView x:Name="FileTabViewControl"
+                 Padding="0, -1, 0, 0"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Loaded="TabView_Loaded"
+                 CanReorderTabs="True"
+                 CloseButtonOverlayMode="OnPointerOver"
+                 AddTabButtonClick="TabView_OnAddTabButtonClick"
+                 TabCloseRequested="TabView_OnTabCloseRequested">
+        </TabView>
+    </Grid>
 </UserControl>

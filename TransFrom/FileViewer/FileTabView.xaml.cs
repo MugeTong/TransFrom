@@ -13,31 +13,33 @@ public sealed partial class FileTabView
     // 添加欢迎界面
     private void TabView_Loaded(object sender, RoutedEventArgs e)
     {
-        var tab = new TabViewItem
+        var newTab = new TabViewItem
         {
             IconSource = new FontIconSource { Glyph = "\uE706" },
             Header = "欢迎界面",
-            Content = new WelcomePage()
+            Content = new Frame()
         };
-        FileViewWindow.TabItems.Add(tab);
+        ((Frame)newTab.Content).Navigate(typeof(WelcomePage));
+        FileTabViewControl.TabItems.Add(newTab);
     }
 
     // 添加新建文档按钮
     private void TabView_OnAddTabButtonClick(TabView sender, object args)
     {
-        var tab = new TabViewItem
+        var newTab = new TabViewItem
         {
-            IconSource = new FontIconSource { Glyph = "\uE8B6" },
-            Header = "新建文档",
-            Content = new TextBlock { Text = "新建文档" }
+            IconSource = new FontIconSource { Glyph = "\uE706" },
+            Header = "欢迎界面",
+            Content = new Frame()
         };
-        FileViewWindow.TabItems.Add(tab);
+        ((Frame)newTab.Content).Navigate(typeof(WelcomePage));
+        FileTabViewControl.TabItems.Add(newTab);
+        FileTabViewControl.SelectedItem = newTab;
     }
 
     // 添加关闭按钮
     private void TabView_OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {
-        FileViewWindow.TabItems.Remove(args.Tab);
+        FileTabViewControl.TabItems.Remove(args.Tab);
     }
-
 }

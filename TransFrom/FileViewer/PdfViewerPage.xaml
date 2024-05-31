@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Page
-    x:Class="TransFrom.FileViewer.WelcomePage"
+    x:Class="TransFrom.FileViewer.PdfViewerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,9 +21,7 @@
             <TextBlock Text="Welcome to TransFrom" FontSize="24" FontWeight="Bold" />
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">
-            <TextBlock Text="This is a simple tool for image transformation." FontSize="16" />
-            <TextBlock Text="Please select an operation from the left pane." FontSize="16" />
-            <Button x:Name="FileOpen" Content="打开文件" Click="FileOpenButton_ClickAsync" />
+            <TextBlock Text="This is PdfViewrPage." FontSize="16" />
         </StackPanel>
 
     </Grid>

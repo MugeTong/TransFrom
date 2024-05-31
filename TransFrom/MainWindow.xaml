@@ -11,9 +11,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Grid.Resources>
-            <x:Double x:Key="AppTitleBarThemeHeight">48</x:Double>
-        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -23,7 +20,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-
+        <!-- 顶部的应用标题栏 -->
         <Border Height="48" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
 
         <!-- 主体内容导航栏 -->
@@ -31,9 +28,13 @@
                         Grid.RowSpan="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
+                        x:Name="MainNavigationView"
+                        PaneTitle="菜单栏"
                         PaneDisplayMode="Left"
+                        IsPaneOpen="False"
                         IsSettingsVisible="False"
                         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
             <!-- 自定义标题栏 TitleBar 同时覆盖导航栏的资源 -->
             <NavigationView.Resources>
                 <!-- This top margin is the height of the custom titleBar -->
@@ -43,29 +44,28 @@
                 <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
             </NavigationView.Resources>
 
+            <!-- 设定导航栏的左边栏控件内容 -->
             <NavigationView.MenuItems>
+                <!-- 文件转换 -->
                 <NavigationViewItem x:Name="TransformNavigationViewItem" Content="转换" Tag="TransformPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7FD;" />
                     </NavigationViewItem.Icon>
-                    <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
-                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
-                    </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="压缩" Tag="CompressPage">
+                <!-- 文件压缩 -->
+                <NavigationViewItem x:Name="CompressNavigationViewItem" Content="压缩" Tag="CompressPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81E;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Icon="Crop" Content="裁剪" Tag="CropPage">
-                    <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
-                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
-                    </NavigationViewItem.MenuItems>
+
+                <!-- 文件裁剪 -->
+                <NavigationViewItem x:Name="CropNavigationViewItem" Icon="Crop" Content="裁剪" Tag="CropPage">
                 </NavigationViewItem>
-                <NavigationViewItem Content="合并" Tag="MergePage">
+
+                <!-- 文件合并 -->
+                <NavigationViewItem x:Name="MergeNavigationViewItem" Content="合并" Tag="MergePage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEA3C;" RenderTransformOrigin=".5 .5">
                             <FontIcon.RenderTransform>
@@ -73,16 +73,22 @@
                             </FontIcon.RenderTransform>
                         </FontIcon>
                     </NavigationViewItem.Icon>
+
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3"/>
+                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4"/>
+                    </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
+            <!-- 添加一个搜索框 -->
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" />
             </NavigationView.AutoSuggestBox>
 
             <!--这个导览页面用于展示数据内容，左侧选择操作 -->
             <NavigationView.Content>
-                <fileViewer:FileTabView />
+                <fileViewer:FileTabView x:Name="FileTabView"/>
             </NavigationView.Content>
         </NavigationView>
     </Grid>
