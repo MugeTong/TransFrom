@@ -32,12 +32,12 @@
                         PaneTitle="菜单栏"
                         PaneDisplayMode="Left"
                         IsPaneOpen="False"
-                        IsSettingsVisible="False"
+                        ItemInvoked="MainNavigationView_ItemInvoked"
                         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-            <!-- 自定义标题栏 TitleBar 同时覆盖导航栏的资源 -->
+            <!-- 将主体内容下移，为窗口的 AppTitleBar 腾出空间 -->
             <NavigationView.Resources>
-                <!-- This top margin is the height of the custom titleBar -->
+                <!-- 这里的高度是自定义的标题栏的高度 -->
                 <Thickness x:Key="NavigationViewContentMargin">0,42,0,0</Thickness>
                 <Thickness x:Key="NavigationViewMinimalContentMargin">0,42,0,0</Thickness>
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
@@ -80,6 +80,14 @@
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
+
+            <!-- 底部的快捷打开等命令 -->
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem x:Name="FileOpen" Icon="OpenFile" Content="打开" Tag="OpenFile" />
+                <NavigationViewItem x:Name="FileSave" Icon="Save" Content="保存" Tag="SaveFile" />
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem x:Name="Help" Icon="Help" Content="帮助" Tag="Help" />
+            </NavigationView.FooterMenuItems>
 
             <!-- 添加一个搜索框 -->
             <NavigationView.AutoSuggestBox>

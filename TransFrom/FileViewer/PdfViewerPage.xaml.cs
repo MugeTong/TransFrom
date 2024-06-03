@@ -11,7 +11,7 @@ public sealed partial class PdfViewerPage
     }
 
     // When navigated to this page, load the EML file
-    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
     }
