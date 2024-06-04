@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:fileViewer="using:TransFrom.FileViewer"
+    xmlns:controls="using:TransFrom.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -21,13 +22,10 @@
         </Grid.ColumnDefinitions>
 
         <!-- 顶部的应用标题栏 -->
-        <Border Height="48" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+        <controls:AppTitleBar Grid.Column="1" />
 
         <!-- 主体内容导航栏 -->
-        <NavigationView Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
+        <NavigationView Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
                         x:Name="MainNavigationView"
                         PaneTitle="菜单栏"
                         PaneDisplayMode="Left"
@@ -75,8 +73,8 @@
                     </NavigationViewItem.Icon>
 
                     <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3"/>
-                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4"/>
+                        <NavigationViewItem Content="Mail" Icon="Mail" ToolTipService.ToolTip="Mail" Tag="SamplePage3" />
+                        <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" Tag="SamplePage4" />
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
@@ -85,7 +83,7 @@
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem x:Name="FileOpen" Icon="OpenFile" Content="打开" Tag="OpenFile" />
                 <NavigationViewItem x:Name="FileSave" Icon="Save" Content="保存" Tag="SaveFile" />
-                <NavigationViewItemSeparator/>
+                <NavigationViewItemSeparator />
                 <NavigationViewItem x:Name="Help" Icon="Help" Content="帮助" Tag="Help" />
             </NavigationView.FooterMenuItems>
 
@@ -96,7 +94,7 @@
 
             <!--这个导览页面用于展示数据内容，左侧选择操作 -->
             <NavigationView.Content>
-                <fileViewer:FileTabView x:Name="FileTabView"/>
+                <fileViewer:FileTabView x:Name="FileTabView" />
             </NavigationView.Content>
         </NavigationView>
     </Grid>

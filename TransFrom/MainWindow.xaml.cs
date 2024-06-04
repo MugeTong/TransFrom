@@ -1,6 +1,5 @@
 using System;
 using Microsoft.UI.Xaml;
-using Windows.Storage.Pickers;
 using Microsoft.UI.Xaml.Controls;
 
 namespace TransFrom;
@@ -14,12 +13,17 @@ public sealed partial class MainWindow
     {
         InitializeComponent();
         Closed += MainWindow_Closed;
-        MainNavigationView.BackRequested += (sender, e) => FileTabView.GoBack();
-        FileTabView.TabViewContentChanged += (sender, e) => MainNavigationView.IsBackEnabled = FileTabView.CanGoBack;
+
+        // 将 TabView 的 CanGoBack 和 GoBack 方法暴露给 MainWindow 用以检测和控制返回按钮的可用性
+        MainNavigationView.BackRequested += (_, _) => FileTabView.GoBack();
+        FileTabView.TabViewContentChanged += (_, _) => MainNavigationView.IsBackEnabled = FileTabView.CanGoBack;
+
+        // 监听导航栏的 ItemInvoked 事件，根据点击的导航项进行页面跳转
+        MainNavigationView.ItemInvoked += MainNavigationView_ItemInvoked;
     }
 
     // 控制窗口关闭时的行为
-    private void MainWindow_Closed(object sender, WindowEventArgs e)
+    private static void MainWindow_Closed(object sender, WindowEventArgs e)
     {
         Application.Current.Exit();
     }

@@ -10,9 +10,6 @@ namespace TransFrom;
 /// </summary>
 public partial class App
 {
-    /// <summary>
-    /// 初始化单例应用程序对象。这是执行的第一行已编写代码，逻辑等同于 main() 或 WinMain()。
-    /// </summary>
     public App()
     {
         InitializeComponent();
@@ -20,14 +17,11 @@ public partial class App
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
     }
 
-    /// <summary>
-    /// 在应用程序由最终用户正常启动时调用。
-    /// </summary>
-    /// <param name="args">有关启动请求和过程的详细信息。</param>
+    public static Window Window { get; private set; }
+
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        var mainWindow = new MainWindow();
-        mainWindow.Activate();
-        mainWindow.ExtendsContentIntoTitleBar = true;
+        Window = new MainWindow();
+        Window.Activate();
     }
 }

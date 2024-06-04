@@ -16,7 +16,6 @@
                  HorizontalAlignment="Stretch"
                  Loaded="TabView_Loaded"
                  CanReorderTabs="True"
-                 CloseButtonOverlayMode="OnPointerOver"
                  AddTabButtonClick="TabView_OnAddTabButtonClick"
                  TabCloseRequested="TabView_OnTabCloseRequested">
         </TabView>
