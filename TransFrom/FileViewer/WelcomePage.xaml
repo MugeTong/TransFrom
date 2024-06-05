@@ -14,16 +14,22 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="1" Grid.Column="1"
+               HorizontalAlignment="Center"
+               Width="200" Stretch="Uniform"
+               Source="../Assets/LargeTile.scale-400.png" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="Welcome to TransFrom" FontSize="24" FontWeight="Bold" />
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="This is a simple tool for image transformation." FontSize="16" />
             <TextBlock Text="Please select an operation from the left pane." FontSize="16" />
-            <Button x:Name="FileOpen" Content="打开文件" Click="FileOpenButton_ClickAsync" />
         </StackPanel>
 
     </Grid>

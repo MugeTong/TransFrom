@@ -6,18 +6,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fileViewer="using:TransFrom.FileViewer"
     mc:Ignorable="d">
 
 
     <Grid>
+        <fileViewer:WelcomePage x:Name="WelcomBackgroundPage" />
         <TabView x:Name="FileTabViewControl"
                  Padding="0, -1, 0, 0"
                  VerticalAlignment="Stretch"
                  HorizontalAlignment="Stretch"
-                 Loaded="TabView_Loaded"
                  CanReorderTabs="True"
-                 AddTabButtonClick="TabView_OnAddTabButtonClick"
-                 TabCloseRequested="TabView_OnTabCloseRequested">
+                 IsAddTabButtonVisible="False">
         </TabView>
     </Grid>
 </UserControl>
