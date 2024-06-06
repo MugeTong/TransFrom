@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Microsoft.UI.Xaml;
 using WinRT.Interop;
 
 namespace TransFrom.Helper;
 
 public static class FileOpenHelper
 {
-    public static async Task<StorageFile> OpenFileAsync()
+    public static async Task<StorageFile> OpenFileAsync(List <string> fileTypeFilter = null)
     {
         // 打开文件选择器
         var filePicker = new FileOpenPicker
@@ -23,8 +23,7 @@ public static class FileOpenHelper
         };
 
         // GetLastOpenLocation(filePicker);
-
-        filePicker.FileTypeFilter.Add("*");
+        fileTypeFilter?.ForEach(filePicker.FileTypeFilter.Add);
         InitializeWithWindow.Initialize(filePicker, WindowNative.GetWindowHandle(App.Window));
         var file = await filePicker.PickSingleFileAsync();
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using TransFrom.Helper;
@@ -18,28 +18,21 @@ public sealed partial class WelcomePage
     private async void FileOpenButton_ClickAsync(object sender, RoutedEventArgs e)
     {
         // 打开文件选择器
-        var file = await FileOpenHelper.OpenFileAsync();
+        var file = await FileOpenHelper.OpenFileAsync([".pdf"]);
         if (file == null) return;
 
         // 判断文件类型并打开(file);
-        switch (file.Name)
+        var fileExtension = Path.GetExtension(file.Name);
+        if (fileExtension == null) return;
+        switch (fileExtension.ToLower())
         {
-            case "test.eml":
+            case ".pdf":
                 var frame = new Frame();
                 frame.Navigate(typeof(PdfViewerPage), file);
                 ParentFileTabView?.AddTabItem(new FontIconSource { Glyph = "\uE706" }, file.Name, frame);
                 break;
-            case "test.pdf":
-                break;
-            default:
-                var dialog = new ContentDialog
-                {
-                    Title = "Just Kidding",
-                    Content = "In development.",
-                    CloseButtonText = "OK",
-                    XamlRoot = XamlRoot
-                };
-                await dialog.ShowAsync();
+            case ".docx":
+            case ".doc":
                 break;
         }
     }

@@ -19,7 +19,6 @@ public sealed partial class AppTitleBar
     // 重置自定义标题栏，使得导航的返回按钮可点击同时其余部分可拖动
     private void ResetAppTitleBar(object sender, RoutedEventArgs e)
     {
-        App.Window.ExtendsContentIntoTitleBar = true;
         App.Window.SetTitleBar(new AppTitleBar());
         // 获取自定义标题栏的矩形区域
         App.Window.AppWindow.TitleBar.SetDragRectangles([GetDragRect()]);
