@@ -15,12 +15,13 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="WelcomePageLeftPadding" Width="1*" />
-            <ColumnDefinition x:Name="WelcomePageGrayLogo" Width="Auto" />
-            <ColumnDefinition x:Name="WelcomePageSeparator" Width="Auto" />
-            <ColumnDefinition x:Name="WelcomePageIntroduction" Width="Auto" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition x:Name="LeftPadding" Width="1*" />
+            <ColumnDefinition x:Name="GrayLogo" Width="Auto" />
+            <ColumnDefinition x:Name="Separator" Width="Auto" />
+            <ColumnDefinition x:Name="Introduction" Width="Auto" />
+            <ColumnDefinition x:Name="RightPadding" Width="1*" />
         </Grid.ColumnDefinitions>
+        <!-- 放置Logo -->
         <Image Grid.Row="1" Grid.Column="1"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -28,12 +29,18 @@
                Stretch="Uniform"
                Opacity="0.5"
                Source="../Assets/GrayScale-400.png" />
-        <Border Grid.Row="1" Grid.Column="2" Width="2" Height="100" Margin="20, 0" Background="#232323"/>
+        <!-- 分割线 -->
+        <Border Grid.Row="1" Grid.Column="2"
+                Width="2"
+                Height="120"
+                Margin="20, 0"
+                Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+        <!-- 介绍 -->
         <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">
             <TextBlock Text="Welcome to TransFrom" FontSize="24" FontWeight="Bold" Margin="0, 0, 0, 10" />
             <TextBlock Text="This is a simple tool for image transformation." FontSize="16" />
             <TextBlock Text="Please select an operation from the left pane." FontSize="16" />
-            <Button Content="打开文件" Click="FileOpenButton_ClickAsync" />
+            <Button Content="打开文件" HorizontalAlignment="Center" Margin="10" Click="FileOpenButton_ClickAsync" />
         </StackPanel>
 
     </Grid>
